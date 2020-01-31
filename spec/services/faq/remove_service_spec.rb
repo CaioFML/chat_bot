@@ -1,9 +1,11 @@
-require_relative './../../spec_helper.rb' 
+require_relative './../../spec_helper.rb'
 
 describe FaqModule::RemoveService do
   describe '#call' do
     context "Valid ID" do
       before do
+        Faq.delete_all
+
         faq = create(:faq)
         @removeService = FaqModule::RemoveService.new({"id" => faq.id})
       end

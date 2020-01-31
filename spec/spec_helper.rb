@@ -1,6 +1,7 @@
 require 'rspec'
 require 'rack/test'
 require 'ffaker'
+require 'factory_bot'
 require "pg_search"
 require_relative '../app.rb'
 
@@ -18,6 +19,10 @@ module RSpecMixin
 end
 
 RSpec.configure do |c|
+  c.include FactoryBot::Syntax::Methods
+  c.before(:suite) do
+    FactoryBot.find_definitions
+  end
   c.include RSpecMixin
   ActiveRecord::Base.logger = nil
   ENV['LOG'] == true

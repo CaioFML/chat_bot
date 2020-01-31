@@ -5,8 +5,8 @@ describe FaqModule::ListService do
     context "list command" do
       context "Zero faqs in database" do
         it "Return don't find message" do
+          Faq.delete_all
           @listService = FaqModule::ListService.new({}, 'list')
-
 
           response = @listService.call()
           expect(response).to match("Nada encontrado")

@@ -10,7 +10,7 @@ describe FaqModule::CreateService do
   describe '#call' do
     context "Without hashtag params" do
       it "will receive a error" do
-        @createService = FaqModule::CreateService.new({"question" => @question, "answer" => @answer})
+        @createService = FaqModule::CreateService.new("question": @question, "answer": @answer)
         response = @createService.call
         expect(response).to match("Hashtag Obrigatória")
       end
@@ -18,6 +18,7 @@ describe FaqModule::CreateService do
 
     context "With Valid params" do
       before do
+        Hashtag.delete_all
         @createService = FaqModule::CreateService.new({"question" => @question, "answer" => @answer, "hashtags" => @hashtags})
         @response = @createService.call
       end

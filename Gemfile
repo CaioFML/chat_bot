@@ -8,6 +8,7 @@ gem 'pg_search', '~> 2.1.4'
 gem "factory_bot"
 gem "ffaker"
 gem 'database_cleaner'
+gem "pry"
   
 group :development do
   gem "tux"
